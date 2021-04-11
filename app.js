@@ -2,6 +2,8 @@
 var express = require('express');
 //加载模板处理模块
 var swig = require('swig');
+//加载数据库模块
+var mongoose = require('mongoose');
 //创建app应用  ==  nodejs的Http.createServer();
 var app = express();
 //配置应用模板
@@ -48,6 +50,9 @@ app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 
+
+//连接数据库
+mongoose.connect();
 
 //监听请求
 app.listen(8081);
