@@ -52,12 +52,22 @@ app.use('/',require('./routers/main'));
 
 
 //连接数据库
-mongoose.connect();
+mongoose.connect('mongodb://localhost:27018/blog',function(err){
+    if(err){
+        console.log('err');
+    }else{
+        console.log('success');
+        //监听请求
+        app.listen(8081);
+    }
+});
 
-//监听请求
-app.listen(8081);
+
 
 
 //用户发送http请求→url→解析路由→找到匹配的规则→执行指定的绑定函数，返回对应内容到用户
 // /public → 静态 → 直接读取指定目录下的文件，返回给用户
 // → 动态 → 处理业务逻辑，加载模板，解析模板 → 返回数据给用户
+
+
+
